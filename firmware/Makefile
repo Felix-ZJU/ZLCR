@@ -52,7 +52,7 @@ SRCS += stm32f4xx_hal_dma_ex.c
 SRCS += stm32f4xx_hal_i2s.c
 
 # add startup file to build
-SRCS += $(PROJ_NAME)/gcc/startup_stm32f411xe.c
+SRCS += $(PROJ_NAME)/gcc/startup_stm32f411xe.s
 
 # Project name
 PROJ_NAME = zlcr_beta_freertos
@@ -62,18 +62,13 @@ CC = arm-none-eabi-gcc
 OBJCOPY = arm-none-eabi-objcopy
 SIZE = arm-none-eabi-size
 
-
-# Choose debug or release...
-# CFLAGS =  -g -O2 -Wall -std=c99 -lm -lnosys -specs=nosys.specs -u _printf_float -u _scanf_float
-# CFLAGS =  --specs=nano.specs -u_printf_float -u_scanf_float --specs=nosys.specs
 CFLAGS  = -g -O3 -Wall
 CFLAGS += -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16
 CFLAGS += -u_printf_float -u_scanf_float
-# CFLAGS += -ffunction-sections -fdata-sections
 CFLAGS += -D USE_HAL_DRIVER -D STM32F411xE -D ARM_MATH_CM4 -D __FPU_PRESENT=1U
 CFLAGS += -T $(PROJ_NAME)/gcc/stm32f411ce_flash.lds
 
-LIBS  = -lm -lc -lnosys
+LIBS = -lm -lc -lnosys
 
 vpath %.c  ./zlcr_beta_core
 vpath %.c  $(PROJ_NAME)/src

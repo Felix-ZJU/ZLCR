@@ -20,7 +20,7 @@
  * limitations under the License.
  */
 
-#include "ZLCR_beta_core.h"
+#include "zlcr_beta_core.h"
 #include "arm_math.h"
 
 float           ZLCR_prv_buf        [4][512];
